@@ -5,7 +5,9 @@ main {
 .rt-daily-quest___list {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: .5rem 2rem;
+  flex-wrap: wrap;
+  height: calc(100dvh - 18rem);
 }
 
 .rt-daily-quest___item {
@@ -18,12 +20,37 @@ main {
   height: 16px;
 }
 
+.rt-daily-quest___legend img.sword,
 .rt-daily-quest___item img.sword {
   filter: var(--highlight-icon-filter);
 }
 
+.rt-daily-quest___legend img.chat_quest,
 .rt-daily-quest___item img.chat_quest {
   filter: var(--highlight-secondary-icon-filter);
+}
+
+.rt-daily-quest___legend {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  padding: 1rem;
+  border: 1px solid var(--light-color);
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+  gap: .5rem
+}
+
+#search-daily-quest {
+  min-width: 300px;
+  margin-bottom: 2rem;
+
+}
+
+.rt-daily-quest___legend .legend {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
 }
 
 .rt-daily-quest___mobs {
@@ -132,4 +159,11 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+}
+
+@media screen and (max-width: 720px) {
+
+  .rt-daily-quest___list {
+    flex-wrap: nowrap;
+  }
 }

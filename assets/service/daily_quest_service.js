@@ -1,25 +1,49 @@
 const daily_quest_service = {};
 
+const KILL_MOB = { name: 'sword', title: "Matar MOB" };
+const NPC_CHAT = { name: 'chat_quest', title: "Conversar com NPC" };
+
+
 daily_quest_service.get_type_quest = (daily_quest) => {
-  return daily_quest.mob_kill ? { name: 'sword', title: "Matar mob" } : { name: 'chat_quest', title: "Conversar com NPC" };
+  return daily_quest.mob_kill ? KILL_MOB : NPC_CHAT;
 };
 
-daily_quest_service.build_ul_template = function () {
-  const header = `<h1>Daily Quests:</h1>
-    <ul class="rt-daily-quest___list">`;
-  return daily_quest_db.all.reduce((template, quest) => {
+daily_quest_service.build_legend_type_quest = () => {
+  return [KILL_MOB, NPC_CHAT].reduce((template, type) => {
+    return template + `<div class="legend">
+      <img class="${type.name}" src="../icon/${type.name}.svg" alt="Type Quest ${type.name}"/>
+      <small>${type.title}</small>
+      </div>
+    `;
+  }, '<div class="rt-daily-quest___legend">') + '</div>';
+}
+
+daily_quest_service.build_header_daily_quest = function () {
+  return `<h1>Daily Quests</h1>
+    <input id="search-daily-quest" type="search" placeholder="Busque pelo nome da quest" onkeyup="on_change_search(event)"/>
+    `
+}
+
+daily_quest_service.build_ul_template = function (criteria = null) {
+  const daily_quest_filtered = daily_quest_db.all.filter(quest => criteria == null || criteria == '' || quest.name.trim().toLowerCase().includes(criteria.trim().toLowerCase()));
+  if (daily_quest_filtered.length === 0) {
+    return `<ul class="rt-daily-quest___list"><li>Nenhuma quest encontrada!</li></ul>`
+  }
+  return daily_quest_filtered.reduce((template, quest) => {
     const type_quest = daily_quest_service.get_type_quest(quest);
     return template + `
       <li class="rt-daily-quest___item">
-        <a href="../view/daily_quest.html?daily_quest_id=${quest.id}" target="_blank">${quest.name}</a>
+        <a href="../view/daily_quest.html?daily_quest_id=${quest.id}">${quest.name}</a>
         <img class="${type_quest.name}" src="../icon/${type_quest.name}.svg" title="${type_quest.title}" alt="Ícone Tipo Quest"/>
       </li>`
-  }, header) + "</ul>";
+  }, '<ul class="rt-daily-quest___list">') + `
+    <br><li>${daily_quest_service.build_legend_type_quest()}</li>
+  </ul>`;
 }
 
 daily_quest_service.build_quest_page = function (daily_quest) {
   const delivery_message = `Receber recompensa ${daily_quest.messages ? "em um dos seguintes NPC:" : "em:"}`;
-  return `
+  return `<a class="highlight" href="../view/daily_quest.html">Daily Quest</a>
   <h1>${daily_quest.name}</h1>
   ${daily_quest_service.build_mob_kill_details(daily_quest.mob_kill)}
   ${daily_quest_service.build_npc_sequence_location(daily_quest.npc_sequence)}
@@ -51,7 +75,7 @@ daily_quest_service.build_mob_kill_details = function (mob_kill) {
           <img class="sprite" src="${link.mob_image(mob.mob_id)}" alt="Mob Image" />
         </div>
         <div class="rt-daily-quest___location">
-          <img width="100" height="100" src="${link.map_image(mob.map_spawn)}" alt="Mapa Spawn" />
+          <img width="100" height="100" src="${link.map_image(mob.map_spawn)}" alt="Mapa Spawn"/>
           <a href="${link.map_url(mob.map_spawn)}" target="_blank">${mob.map_spawn.toLowerCase()}</a>
         </div>
       </div>
