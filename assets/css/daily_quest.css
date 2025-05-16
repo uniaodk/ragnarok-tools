@@ -1,0 +1,135 @@
+main {
+  justify-content: flex-start;
+}
+
+.rt-daily-quest___list {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.rt-daily-quest___item {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.rt-daily-quest___item img {
+  height: 16px;
+}
+
+.rt-daily-quest___item img.sword {
+  filter: var(--highlight-icon-filter);
+}
+
+.rt-daily-quest___item img.chat_quest {
+  filter: var(--highlight-secondary-icon-filter);
+}
+
+.rt-daily-quest___mobs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.rt-daily-quest___mob {
+  border: 1px solid var(--light-color);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.rt-daily-quest___mob-name {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.rt-daily-quest___mob-name a {
+  font-size: .9rem;
+  color: var(--highlight-secondary-color);
+}
+
+.rt-daily-quest___mob-details {
+  padding-top: 1rem;
+  max-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.rt-daily-quest___mob-target {
+  display: flex;
+  width: 80px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.rt-daily-quest___mob-target>img {
+  max-height: 70px;
+  object-fit: contain;
+}
+
+.rt-daily-quest___npc>img {
+  max-height: 120px;
+  object-fit: contain;
+}
+
+.rt-daily-quest___mob-kill {
+  display: flex;
+  align-items: flex-end;
+  font-size: 2rem;
+  line-height: .9;
+  font-weight: bold;
+}
+
+.rt-daily-quest___mob-kill img {
+  filter: var(--highlight-icon-filter);
+}
+
+.rt-daily-quest___location {
+  display: flex;
+  gap: .5rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rt-daily-quest___location .map {
+  position: relative;
+}
+
+.rt-daily-quest___delivery {
+  display: flex;
+  margin: auto;
+  width: fit-content;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.rt-daily-quest___location .quest-mark {
+  position: absolute;
+  display: block;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.rt-daily-quest___npc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rt-daily-quest___npc-sequence {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}

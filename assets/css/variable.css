@@ -1,0 +1,9 @@
+:root {
+  --light-color: #e8e8e8;
+  --highlight-color: #d33e20;
+  --highlight-secondary-color: #2da7cc;
+  --muted-color: #aeaeab;
+  --dark-color: #10131c;
+  --highlight-icon-filter: invert(36%) sepia(82%) saturate(4379%) hue-rotate(352deg) brightness(87%) contrast(88%);
+  --highlight-secondary-icon-filter: invert(78%) sepia(31%) saturate(5300%) hue-rotate(158deg) brightness(84%) contrast(88%);
+}

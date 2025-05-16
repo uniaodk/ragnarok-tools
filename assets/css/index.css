@@ -1,0 +1,23 @@
+.rt-search {
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.rt-search a,
+.rt-search a img {
+  width: 100%;
+  border-radius: 2rem;
+  max-width: 420px;
+  margin: auto
+}
+
+#ul-features {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  justify-content: space-between;
+}
